@@ -74,7 +74,7 @@ class ClientAction(threading.Thread):
                 with Hermes(self.__mqtt_addr) as h:
                     for i in self.intent_funcs:
                         for name in self.config.intents.get_intent(i[1]):
-                            h.subscribe_intent(name, i[0])
+                            h.subscribe_intent("InsignDevice:" + name, i[0])
                             print("subscribe to {}".format(name))
                     for site_id in ["default", "cortex_00_2", "cortex_40_2"]:
                         h.publish_start_session_notification(site_id,
